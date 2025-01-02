@@ -1,0 +1,22 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #fd85f1;
+    padding: 10px;
+    text-align: center;
+    background-color: #ffd9fa;
+    border-radius: 5px;
+}
+
+.link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
