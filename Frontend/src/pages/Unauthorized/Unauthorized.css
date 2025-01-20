@@ -1,0 +1,34 @@
+.unauthorized-container {
+    text-align: center;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.unauthorized-container h1 {
+    font-size: 3em;
+    color: #ff4d4f;
+    margin-bottom: 20px;
+}
+
+.unauthorized-container p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.unauthorized-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #1890ff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.unauthorized-container a:hover {
+    background-color: #40a9ff;
+}

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    .product-detail
+        img(src=product.image, alt=product.name)
+        h2= product.name
+        p= product.description
+        p Price: $#{product.price}
+        button.add-to-cart(data-id=product._id) Add to Cart

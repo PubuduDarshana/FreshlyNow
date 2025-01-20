@@ -1,0 +1,53 @@
+$primary-color: #4CAF50;
+$font-family: 'Arial', sans-serif;
+
+body {
+    font-family: $font-family;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: $primary-color;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product {
+    background: white;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    max-width: 100%;
+}
+
+.product h3 {
+    color: $primary-color;
+}
+
+.product p {
+    color: #333;
+}
+
+button.add-to-cart {
+    background-color: $primary-color;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button.add-to-cart:hover {
+    background-color: darken($primary-color, 10%);
+}

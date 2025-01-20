@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 Welcome to Our E-Commerce Store!
+    section.products
+        each product in products
+            .product
+                img(src=product.image, alt=product.name)
+                h3= product.name
+                p= product.price
+                a(href=`/product/${product._id}`) View Details

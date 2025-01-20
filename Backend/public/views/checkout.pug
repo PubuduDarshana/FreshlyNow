@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h2 Checkout
+    form(method="POST", action="/checkout")
+        label(for="address") Address:
+        input(type="text", name="address", required)
+        label(for="payment-method") Payment Method:
+        select(name="payment-method", required)
+            option(value="credit-card") Credit Card
+            option(value="paypal") PayPal
+        button(type="submit") Place Order

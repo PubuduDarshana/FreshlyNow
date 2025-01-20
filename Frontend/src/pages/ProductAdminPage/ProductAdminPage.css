@@ -1,0 +1,53 @@
+/* Center and style the admin-page container */
+.admin-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    gap: 20px;
+}
+
+/* Common styles for buttons */
+.admin-page button {
+    flex: 1;
+    /* Makes buttons responsive to container width */
+    max-width: 200px;
+    /* Optional maximum width */
+    background-color: #ddd;
+    /* Default inactive state */
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Active button styling */
+.admin-page button.active {
+    background-color: #2cbd31;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    /* Slightly larger for emphasis */
+}
+
+/* Hover effect */
+.admin-page button:hover {
+    background-color: #8de090;
+}
+
+.admin-page button.active:hover {
+    background-color: #309433;
+}
+
+/* Focus and active effects */
+.admin-page button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,74 @@
+.banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #172efd, #ada5fb); /* Gradient background */
+    color: white;
+    padding: 60px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+    animation: moveBackground 2s linear infinite;
+    z-index: 0;
+  }
+  
+  @keyframes moveBackground {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-25%, -25%);
+    }
+  }
+  
+  .title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 10px 0;
+    z-index: 1; /* Ensure it stays above the background */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 5px 0;
+    z-index: 1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+  }
+  
+  .banner button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ff7e5f;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  
+  .banner button:hover {
+    background-color: #feb47b;
+    color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  

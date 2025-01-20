@@ -1,0 +1,195 @@
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  
+  .container h1 {
+    font-size: 2.5rem;
+    color: #2d3748;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+  }
+  
+  .cartItems {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .cartItem {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .cartItem h3 {
+    font-size: 1.25rem;
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+  }
+  
+  .cartItem img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+  
+  .cartItem p {
+    color: #4a5568;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .cartItem p:nth-child(2) {
+    color: #2c5282;
+    font-weight: 600;
+  }
+  
+  /* Quantity controls */
+  .cartItem div:last-of-type {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .cartItem button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #e2e8f0;
+    color: #2d3748;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+  }
+  
+  .cartItem button:hover {
+    background: #cbd5e0;
+  }
+  
+  .removeButton {
+    background-color: #fed7d7 !important;
+    color: #e53e3e !important;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: start;
+  }
+  
+  .removeButton:hover {
+    background-color: #feb2b2 !important;
+  }
+  
+  /* Empty cart message */
+  .container > p {
+    font-size: 1.2rem;
+    color: #4a5568;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .link {
+    color: #3182ce;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+  
+  .link:hover {
+    color: #2c5282;
+  }
+  
+  /* Total and action buttons */
+  .cartItems > p {
+    font-size: 1.25rem;
+    color: #2d3748;
+    font-weight: 600;
+    margin: 2rem 0;
+    text-align: right;
+  }
+  
+  .clearButton, .checkoutButton {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
+  .clearButton {
+    background-color: #fed7d7;
+    color: #e53e3e;
+    margin-bottom: 1rem;
+  }
+  
+  .clearButton:hover {
+    background-color: #feb2b2;
+  }
+  
+  .checkoutButton {
+    background-color: #3182ce;
+    color: white;
+  }
+  
+  .checkoutButton:hover {
+    background-color: #2c5282;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      margin: 1rem auto;
+      padding: 0 1rem;
+    }
+  
+    .container h1 {
+      font-size: 2rem;
+    }
+  
+    .cartItem {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+  
+    .cartItem img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .removeButton {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  }
+  
+  /* Animation for item removal */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+  }
+  
+  .cartItem.removing {
+    animation: fadeOut 0.3s ease forwards;
+  }

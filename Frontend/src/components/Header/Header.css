@@ -1,0 +1,202 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+
+.header {
+  background: linear-gradient(to right, #ffffff, #f8f9fa);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: "Kablammo", serif;  
+  font-size: 2.5rem;
+  color: #2c5282;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #4299e1;
+  border-radius: 2px;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navList li {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.navList a {
+  text-decoration: none;
+  color: #4a5568;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.navList a:hover {
+  color: #2c5282;
+  background-color: rgba(66, 153, 225, 0.1);
+}
+
+.navList i {
+  font-size: 1.8rem;
+}
+
+/* Cart count styles */
+.navList a:last-child {
+  position: relative;
+}
+
+.navList .red {
+  background-color: red;
+  border-radius: 50%;
+  padding: 2px 5px;
+  position: absolute;
+  translate: 25px -18px;
+}
+
+/* Animation for cart updates */
+@keyframes bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.navList a:last-child:hover i {
+  animation: bump 0.3s ease;
+}
+
+/* Dropdown menu styles */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-container i {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.dropdown-container:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-menu li:hover {
+  background-color: rgba(66, 153, 225, 0.1);
+}
+
+.dropdown-menu a {
+  text-decoration: none;
+  color: #4a5568;
+  display: block;
+  width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .navList {
+    gap: 1rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .header {
+    background: linear-gradient(to right, #1a202c, #2d3748);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .logo {
+    color: #90cdf4;
+  }
+
+  .logo::after {
+    background-color: #90cdf4;
+  }
+
+  .navList a {
+    color: #e2e8f0;
+  }
+
+  .navList a:hover {
+    color: #90cdf4;
+    background-color: rgba(144, 205, 244, 0.1);
+  }
+
+  .dropdown-menu {
+    background-color: #2d3748;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .dropdown-menu li {
+    color: #e2e8f0;
+  }
+
+  .dropdown-menu li:hover {
+    background-color: rgba(144, 205, 244, 0.1);
+  }
+}

@@ -1,0 +1,133 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  .order-admin-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #495057;
+  }
+  
+  /* Error Message */
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* No Orders Found */
+  .no-orders {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #868e96;
+  }
+  
+  /* Table Styles */
+  .orders-table-container {
+    overflow-x: auto;
+  }
+  
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 0.9rem;
+  }
+  
+  .orders-table th,
+  .orders-table td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .orders-table th {
+    background-color: #495057;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .orders-table tbody tr:nth-child(even) {
+    background-color: #f1f3f5;
+  }
+  
+  .orders-table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  .products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .status-badge.pending {
+    background-color: #ffc107;
+  }
+  
+  .status-badge.completed {
+    background-color: #28a745;
+  }
+  
+  .status-badge.cancelled {
+    background-color: #dc3545;
+  }
+  
+  /* Status Select */
+  .status-select {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #495057;
+    cursor: pointer;
+  }
+  
+  .status-select:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+  }
+  
