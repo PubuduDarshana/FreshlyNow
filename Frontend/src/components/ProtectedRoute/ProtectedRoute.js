@@ -1,17 +1,21 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, requireAdmin = false }) => {
+    const { user, isAuthenticated } = useAuth();
+    const location = useLocation();
 
-  const token = localStorage.getItem('token');
-  const user = token ? jwtDecode(token) : null;
+    if (!isAuthenticated) {
+        // Save the attempted URL for redirecting after login
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
 
-  if (!user || user.role !== 'admin') {
-    return <Navigate to="/unauthorized" />;
-  }
+    if (requireAdmin && user?.role !== 'admin') {
+        return <Navigate to="/unauthorized" replace />;
+    }
 
-  return children;
+    return children;
 };
 
 export default ProtectedRoute;

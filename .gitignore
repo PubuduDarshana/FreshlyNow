@@ -30,3 +30,4 @@ coverage/
 # Ignore dependency directories
 bower_components/
 jspm_packages/
+.qodo

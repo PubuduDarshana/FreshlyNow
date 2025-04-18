@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Header from "./components/Header/Header";
 import Banner from "./components/Banner/Banner";
 import ProductGrid from "./components/ProductGrid/ProductGrid";
@@ -16,24 +18,46 @@ import OrderAdminPage from "./pages/OrderAdminPage/OrderAdminPage";
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<><Banner /><ProductGrid /></>} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/productAdmin" element={<ProductAdminPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/orders" element={<OrderHistory />} />
-          <Route path="/login" element={<UserLoginSignup />} />
-          <Route path="/signup" element={<UserLoginSignup />} />
-          <Route path="/unauthorized" element={<Unauthorized />} />
-          <Route path="/ordersAdmin" element={<OrderAdminPage/>}></Route>
-        </Routes>
-      </Router>
-    </CartProvider>
+    <Router>
+      <AuthProvider>
+        <CartProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<><Banner /><ProductGrid /></>} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={
+              <ProtectedRoute>
+                <CheckOut />
+              </ProtectedRoute>
+            } />
+            <Route path="/productAdmin" element={
+              <ProtectedRoute requireAdmin={true}>
+                <ProductAdminPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            } />
+            <Route path="/orders" element={
+              <ProtectedRoute>
+                <OrderHistory />
+              </ProtectedRoute>
+            } />
+            <Route path="/login" element={<UserLoginSignup />} />
+            <Route path="/signup" element={<UserLoginSignup />} />
+            <Route path="/unauthorized" element={<Unauthorized />} />
+            <Route path="/ordersAdmin" element={
+              <ProtectedRoute requireAdmin={true}>
+                <OrderAdminPage/>
+              </ProtectedRoute>
+            } />
+          </Routes>
+        </CartProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

@@ -5,11 +5,10 @@ const api = axios.create({
     baseURL: 'http://localhost:3000/api',
     headers: {
         'Content-Type': 'application/json'
-    },
-    // Remove withCredentials if you're not using session cookies
-    // withCredentials: true
+    }
 });
 
+// Request interceptor for API calls
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
@@ -21,6 +20,23 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
+// Response interceptor for API calls
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        const originalRequest = error.config;
+
+        // Handle 401 Unauthorized errors
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            // Dispatch unauthorized event for AuthContext to handle
+            window.dispatchEvent(new CustomEvent('unauthorized', { 
+                detail: { status: 401 } 
+            }));
+        }
+
+        return Promise.reject(error);
+    }
+);
 
 if (process.env.NODE_ENV === 'development') {
     api.interceptors.request.use(request => {
@@ -34,11 +50,10 @@ if (process.env.NODE_ENV === 'development') {
             return response;
         },
         error => {
-            console.error('Error:', error);
+            console.error('Error:', error.response || error);
             return Promise.reject(error);
         }
     );
 }
-
 
 export default api;
