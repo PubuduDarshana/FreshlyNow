@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import AuthService from '../../services/AuthService';
 import { useNavigate } from 'react-router-dom';
-import "./LogInPage.css"
+import { useAuth } from '../../context/AuthContext';
+import "./LogInPage.css";
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,7 +28,8 @@ const Login = () => {
         setLoading(true);
 
         try {
-            await AuthService.loginUser(formData);
+            const response = await AuthService.loginUser(formData);
+            await login(response.token); // This will handle cart synchronization
             setLoading(false);
             navigate('/');
         } catch (err) {

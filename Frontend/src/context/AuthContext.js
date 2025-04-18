@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { CartContext } from "./CartContext2";
 
 const AuthContext = createContext();
 
@@ -10,12 +11,15 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const cartContext = useContext(CartContext);
 
     const logout = useCallback(() => {
         localStorage.removeItem("token");
         setUser(null);
+        // Clear backend cart data from frontend state
+        cartContext.clearCart();
         navigate("/login");
-    }, [navigate]);
+    }, [navigate, cartContext]);
 
     const checkTokenExpiry = useCallback((token) => {
         try {
@@ -27,11 +31,14 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const login = useCallback((token) => {
+    const login = useCallback(async (token) => {
         try {
             const decodedUser = jwtDecode(token);
             localStorage.setItem("token", token);
             setUser(decodedUser);
+
+            // Merge guest cart with backend cart after login
+            await cartContext.mergeGuestCart(decodedUser.id);
 
             // Set up token expiry check
             const timeUntilExpiry = (decodedUser.exp * 1000) - Date.now();
@@ -42,24 +49,29 @@ export const AuthProvider = ({ children }) => {
             console.error("Invalid token during login:", error);
             logout();
         }
-    }, [logout]);
+    }, [logout, cartContext]);
 
     // Initial auth check and token validation
     useEffect(() => {
-        const initializeAuth = () => {
+        const initializeAuth = async () => {
             const token = localStorage.getItem("token");
             if (token) {
                 if (checkTokenExpiry(token)) {
                     logout();
                 } else {
-                    login(token);
+                    const decodedUser = jwtDecode(token);
+                    setUser(decodedUser);
+                    // Only sync cart if cartContext is available
+                    if (cartContext && cartContext.syncCartWithBackend) {
+                        await cartContext.syncCartWithBackend(decodedUser.id);
+                    }
                 }
             }
             setLoading(false);
         };
 
         initializeAuth();
-    }, [checkTokenExpiry, login, logout]);
+    }, [checkTokenExpiry, logout, cartContext]);
 
     // Intercept 401 responses and logout
     useEffect(() => {
